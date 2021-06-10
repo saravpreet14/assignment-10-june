@@ -2,6 +2,7 @@ import images from './images/index.js';
 
 let activeElementIndex = 0;
 
+// Shortening the title string
 const shortenTitle = (title) => {
     const length = title.length;
     if (length > 33) {
@@ -10,6 +11,7 @@ const shortenTitle = (title) => {
     return title;
 };
 
+// Creating preview image element for given index of image
 const previewImage = (index) => {
     const previewArea = document.querySelector('.previewArea');
     previewArea.innerHTML = `
@@ -20,6 +22,7 @@ const previewImage = (index) => {
     `;
 }
 
+// Creating list element for the given image
 const imageElement = (image) => {
     return `
         <div class='imageIcon'>
@@ -29,6 +32,7 @@ const imageElement = (image) => {
     `;
 };
 
+// Creating sidebar with list of all the images
 const imageList = images.map(image => {
     const listElement = document.createElement('div');
     listElement.classList.add('listElement');
@@ -36,6 +40,7 @@ const imageList = images.map(image => {
     return listElement;
 });
 
+// Changing selected image
 const updateSelected = (index) => {
     if (index == activeElementIndex) {
         return;
@@ -46,25 +51,27 @@ const updateSelected = (index) => {
     activeElementIndex = index;
 }
 
+// Make first image selected initially
 imageList[0].classList.add('active');
 previewImage(0);
 
+// Adding event listener for updating the preview image through click
 for ( let i=0; i < imageList.length; i++ ) {
     imageList[i].addEventListener('click', () => {
         updateSelected(i);
     })
 }
 
+// Adding event listener for updating the preview image through arrow keys
 document.addEventListener('keyup', (event) => {
-    if (event.keyCode == 40) {
+    if (event.code === 'ArrowDown') {
         const newIndex = Math.min(images.length-1, activeElementIndex + 1);
         updateSelected(newIndex);
     }
-    else if (event.keyCode == 38) {
+    else if (event.code === 'ArrowUp') {
         const newIndex = Math.max(0, activeElementIndex-1);
         updateSelected(newIndex);
     }
 })
 
-const sidebar = document.querySelector('.sidebar');
-sidebar.append(...imageList);
+document.querySelector('.sidebar').append(...imageList);
