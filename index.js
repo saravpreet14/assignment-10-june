@@ -54,7 +54,7 @@ for ( let i=0; i < imageList.length; i++ ) {
 }
 
 // Adding event listener for updating the preview image through arrow keys
-document.addEventListener('key', (event) => {
+document.addEventListener('keyup', (event) => {
     if (event.code === 'ArrowDown') {
         const newIndex = Math.min(images.length-1, activeElementIndex + 1);
         updateSelected(newIndex);
