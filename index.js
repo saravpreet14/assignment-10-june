@@ -2,15 +2,6 @@ import images from './images/index.js';
 
 let activeElementIndex = 0;
 
-// Shortening the title string
-const shortenTitle = (title) => {
-    const length = title.length;
-    if (length > 330) {
-        title = title.slice(0, 13) + '...' + title.slice(length-13, length);
-    }
-    return title;
-};
-
 // Creating preview image element for given index of image
 const previewImage = (index) => {
     const previewArea = document.querySelector('.previewArea');
