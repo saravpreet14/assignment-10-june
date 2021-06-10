@@ -1,0 +1,67 @@
+main {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+}
+
+.sidebar {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.previewArea {
+    width: 60%;
+    height: 85vh;
+    flex: 3;
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.listElement {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.imageIcon {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5%;
+    margin: 5px;
+}
+
+img {
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+}
+
+p {
+    text-align: center;
+    font-size: 1.3em;
+}
