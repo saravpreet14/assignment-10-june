@@ -5,8 +5,8 @@ let activeElementIndex = 0;
 // Shortening the title string
 const shortenTitle = (title) => {
     const length = title.length;
-    if (length > 33) {
-        title = title.slice(0, 15) + '...' + title.slice(length-15, length);
+    if (length > 330) {
+        title = title.slice(0, 13) + '...' + title.slice(length-13, length);
     }
     return title;
 };
@@ -28,13 +28,13 @@ const imageElement = (image) => {
         <div class='imageIcon'>
             <img src='${image.previewImage}'>
         </div>
-        <span>${shortenTitle(image.title)}</span>
+        <span>${image.title}</span>
     `;
 };
 
 // Creating sidebar with list of all the images
 const imageList = images.map(image => {
-    const listElement = document.createElement('div');
+    const listElement = document.createElement('li');
     listElement.classList.add('listElement');
     listElement.innerHTML = imageElement(image);
     return listElement;
@@ -63,7 +63,7 @@ for ( let i=0; i < imageList.length; i++ ) {
 }
 
 // Adding event listener for updating the preview image through arrow keys
-document.addEventListener('keyup', (event) => {
+document.addEventListener('key', (event) => {
     if (event.code === 'ArrowDown') {
         const newIndex = Math.min(images.length-1, activeElementIndex + 1);
         updateSelected(newIndex);
@@ -75,3 +75,27 @@ document.addEventListener('keyup', (event) => {
 })
 
 document.querySelector('.sidebar').append(...imageList);
+
+// Function to handle overflow in title
+const dynamicTitle = () => {
+    for ( let i=0; i < imageList.length; i++ ) {
+        const titleElement = imageList[i].querySelector('span');
+        const title = images[i].title;
+        titleElement.innerText = title;
+        if(titleElement.scrollWidth > titleElement.clientWidth) {
+            for (let length=1; length<title.length/2; length++) {
+                titleElement.innerText = title.slice(0, length) + '...' + title.slice(title.length-length, title.length);
+                if (titleElement.scrollWidth > titleElement.clientWidth) {
+                    titleElement.innerText = title.slice(0, length-1) + '...' + title.slice(title.length-(length-1), title.length);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+// Initial title overflow handling
+dynamicTitle();
+
+// Title overflow handling on window resize 
+window.addEventListener('resize', dynamicTitle);
