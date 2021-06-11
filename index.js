@@ -13,26 +13,22 @@ const previewImage = (index) => {
     `;
 }
 
-// Creating list element for the given image
-const imageElement = (image) => {
-    return `
+// Creating sidebar with list of all the images
+const imageList = images.map(image => {
+    const listElement = document.createElement('li');
+    listElement.classList.add('listElement');
+    listElement.innerHTML = `
         <div class='imageIcon'>
             <img src='${image.previewImage}'>
         </div>
         <span>${image.title}</span>
     `;
-};
-
-// Creating sidebar with list of all the images
-const imageList = images.map(image => {
-    const listElement = document.createElement('li');
-    listElement.classList.add('listElement');
-    listElement.innerHTML = imageElement(image);
     return listElement;
 });
 
 // Changing selected image
 const updateSelected = (index) => {
+    // no change required
     if (index == activeElementIndex) {
         return;
     }
