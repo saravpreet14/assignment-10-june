@@ -63,17 +63,27 @@ document.addEventListener('keyup', (event) => {
 
 document.querySelector('.sidebar').append(...imageList);
 
+const titleWillOverflow = (index, length) => {
+    const titleElement = imageList[index].querySelector('span');
+    const title = images[index].title;
+    const availabletTitleHeight = document.querySelector('.imageIcon').clientHeight;
+    if (length*2 < title.length) {
+        titleElement.innerText = title.slice(0, length-1) + '...' + title.slice(images[index].title.length-(length-1), title.length);
+    }
+    else {
+        titleElement.innerText = title;
+    }
+    return titleElement.clientHeight > availabletTitleHeight;
+}
+
 // Function to handle overflow in title
 const dynamicTitle = () => {
     for ( let i=0; i < imageList.length; i++ ) {
-        const titleElement = imageList[i].querySelector('span');
         const title = images[i].title;
-        titleElement.innerText = title;
-        if(titleElement.clientHeight > 55) {
+        if(titleWillOverflow(i, title.length)) {
             for (let length=1; length<title.length/2; length++) {
-                titleElement.innerText = title.slice(0, length) + '...' + title.slice(title.length-length, title.length);
-                if (titleElement.clientHeight > 55) {
-                    titleElement.innerText = title.slice(0, length-1) + '...' + title.slice(title.length-(length-1), title.length);
+                if (titleWillOverflow(i, length)) {
+                    titleWillOverflow(i, length-1);
                     break;
                 }
             }
