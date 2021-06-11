@@ -81,12 +81,18 @@ const dynamicTitle = () => {
     for ( let i=0; i < imageList.length; i++ ) {
         const title = images[i].title;
         if(willTitleOverflow(i, title.length)) {
-            for (let length=1; length<title.length/2; length++) {
+            let minLength = 0, maxLength = title.length/2, maxLengthWithoutOverflow = 0;
+            while (minLength <= maxLength) {
+                let length = Math.floor((minLength + maxLength) / 2);
                 if (willTitleOverflow(i, length)) {
-                    willTitleOverflow(i, length-1);
-                    break;
+                    maxLength = length - 1;
+                }
+                else {
+                    maxLengthWithoutOverflow = length;
+                    minLength = length + 1;
                 }
             }
+            willTitleOverflow(i, maxLengthWithoutOverflow);
         }
     }
 }
