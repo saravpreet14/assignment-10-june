@@ -18,6 +18,10 @@ const images = [
     {
         "previewImage": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
         "title": "interns-performance-report-june-2021.key"
+    },
+    {
+        "previewImage": "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+        "title": "bali-kelingking-beach-plastic-removal-drive.keybali-kelingking-beach-plastic-removal-drive.keybali-kelingking-beach-plastic-removal-drive.key"
     }
 ];
 

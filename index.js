@@ -69,10 +69,10 @@ const dynamicTitle = () => {
         const titleElement = imageList[i].querySelector('span');
         const title = images[i].title;
         titleElement.innerText = title;
-        if(titleElement.scrollWidth > titleElement.clientWidth) {
+        if(titleElement.clientHeight > 55) {
             for (let length=1; length<title.length/2; length++) {
                 titleElement.innerText = title.slice(0, length) + '...' + title.slice(title.length-length, title.length);
-                if (titleElement.scrollWidth > titleElement.clientWidth) {
+                if (titleElement.clientHeight > 55) {
                     titleElement.innerText = title.slice(0, length-1) + '...' + title.slice(title.length-(length-1), title.length);
                     break;
                 }
