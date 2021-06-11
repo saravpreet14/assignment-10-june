@@ -67,14 +67,13 @@ document.querySelector('.sidebar').append(...imageList);
 const willTitleOverflow = (index, length) => {
     const titleElement = imageList[index].querySelector('span');
     const title = images[index].title;
-    const availabletTitleHeight = document.querySelector('.imageIcon').clientHeight;
     if (length*2 < title.length) {
         titleElement.innerText = title.slice(0, length-1) + '...' + title.slice(images[index].title.length-(length-1), title.length);
     }
     else {
         titleElement.innerText = title;
     }
-    return titleElement.clientHeight > availabletTitleHeight;
+    return titleElement.clientHeight < titleElement.scrollHeight;
 }
 
 // Function to handle overflow in title
